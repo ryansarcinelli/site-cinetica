@@ -2,19 +2,25 @@
   <AppHeader /> 
   
   <main>
-    <h1>PAGINA INICIAL AAAAAAA</h1>
+
+    <HeroSection />
+
+
+   
     </main>
 </template>
 
 <script>
 
 import AppHeader from '../components/header.vue';
+import HeroSection from '../components/HomePage/HeroSection.vue';
 
 export default {
   name: 'App',
  
   components: {
-    AppHeader
+    AppHeader,
+    HeroSection
   }
 }
 </script>
