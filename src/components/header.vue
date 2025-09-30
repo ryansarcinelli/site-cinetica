@@ -124,6 +124,7 @@ export default {
         flex-direction: column; 
         align-items: center;
         padding: 20px 0;
+        z-index: 1001;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 

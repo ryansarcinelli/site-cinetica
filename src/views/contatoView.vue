@@ -83,6 +83,10 @@ export default {
 
 <style scoped>
 
+body {
+  background-color: #F6E8CD; 
+}
+
 .contato-page {
  
   max-width: 1200px;
