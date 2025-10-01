@@ -1,103 +1,102 @@
 <template>
-  <AppHeader /> 
-  
+  <AppHeader />
+
   <main class="contato-page">
-    
     <div class="page-title-container">
       <h1 class="page-title">contato</h1>
     </div>
 
     <div class="contato-content">
-
       <section class="info-section">
         <h2>Cinética Jr</h2>
-        <hr class="separator">
+        <hr class="separator" />
 
         <div class="contact-details">
-          <p>
-            <span class="icon-text">📍</span> Alegre - ES - Brasil
-          </p>
-          <p>
-            <span class="icon-text">📞</span> (28) 99946-0521
-          </p>
+          <p><span class="icon-text">📍</span> Alegre - ES - Brasil</p>
+          <p><span class="icon-text">📞</span> (28) 99946-0521</p>
           <p>
             <span class="icon-text">✉️</span> comercialcineticajunior@gmail.com
           </p>
-          <p>
-            <span class="icon-text">📷</span> instagram.com/cineticajunior
-          </p>
+          <p><span class="icon-text">📷</span> instagram.com/cineticajunior</p>
         </div>
       </section>
 
       <section class="form-section">
         <form @submit.prevent="submitForm">
-          
           <div class="form-group">
             <label for="nome">Nome*</label>
-            <input type="text" id="nome" v-model="formData.nome" required>
+            <input type="text" id="nome" v-model="formData.nome" required />
           </div>
-          
+
           <div class="form-group">
             <label for="email">Email*</label>
-            <input type="email" id="email" v-model="formData.email" required>
+            <input type="email" id="email" v-model="formData.email" required />
           </div>
-          
+
           <div class="form-group">
             <label for="como-conheceu">Como conheceu a Cinética?</label>
-            <input type="text" id="como-conheceu" v-model="formData.comoConheceu">
+            <input
+              type="text"
+              id="como-conheceu"
+              v-model="formData.comoConheceu"
+            />
           </div>
-          
+
           <div class="form-group">
             <label for="mensagem">Mensagem*</label>
-            <textarea id="mensagem" rows="6" v-model="formData.message" required></textarea>
+            <textarea
+              id="mensagem"
+              rows="6"
+              v-model="formData.message"
+              required
+            ></textarea>
           </div>
 
           <button type="submit" class="submit-button" :disabled="isSubmitting">
-            {{ isSubmitting ? 'Enviando...' : 'Enviar' }}
+            {{ isSubmitting ? "Enviando..." : "Enviar" }}
           </button>
         </form>
       </section>
     </div>
   </main>
-  
-  <StatusModal 
+
+  <StatusModal
     :is-visible="modal.isVisible"
     :status="modal.status"
     :title="modal.title"
     :message="modal.message"
-    @close="closeModal" 
+    @close="closeModal"
   />
 </template>
 
 <script>
-import AppHeader from '../components/header.vue'; 
-import StatusModal from '../components/StatusModal.vue'; 
-import axios from 'axios'; 
-//aa
+import AppHeader from "../components/header.vue";
+import StatusModal from "../components/StatusModal.vue";
+import axios from "axios";
 
 export default {
-  name: 'ContatoView',
+  name: "ContatoView",
   components: {
     AppHeader,
-    StatusModal 
+    StatusModal,
   },
   data() {
     return {
       formData: {
-        nome: '',
-        email: '',
-        comoConheceu: '',
-        message: '' 
+        nome: "",
+        email: "",
+        comoConheceu: "",
+        message: "",
       },
       isSubmitting: false,
 
       modal: {
         isVisible: false,
-        status: 'sending', 
-        title: '',
-        message: ''
-      }
-    }
+        status: "sending",
+        title: "",
+        message: "",
+      },
+    };
   },
   methods: {
     showModal(status, title, message) {
@@ -106,7 +105,7 @@ export default {
       this.modal.message = message;
       this.modal.isVisible = true;
     },
-    
+
     closeModal() {
       this.modal.isVisible = false;
     },
@@ -115,46 +114,61 @@ export default {
       if (this.isSubmitting) return;
 
       this.isSubmitting = true;
-      this.showModal('sending', 'Enviando Mensagem', 'Por favor, aguarde enquanto processamos seu formulário.');
+      this.showModal(
+        "sending",
+        "Enviando Mensagem",
+        "Por favor, aguarde enquanto processamos seu formulário."
+      );
 
-      
-      const ACCESS_KEY = '2b7eb6f3-ec90-4b81-8df2-3d1cfefce41f'; 
-      const ENDPOINT_DE_EMAIL = 'https://api.web3forms.com/submit'; 
-      
+      const ACCESS_KEY = "2b7eb6f3-ec90-4b81-8df2-3d1cfefce41f";
+      const ENDPOINT_DE_EMAIL = "https://api.web3forms.com/submit";
+
       const payload = {
-          ...this.formData,
-          access_key: ACCESS_KEY,
-          subject: `Nova mensagem de contato de ${this.formData.nome}`,
-          
-          botcheck: false 
+        ...this.formData,
+        access_key: ACCESS_KEY,
+        subject: `Nova mensagem de contato de ${this.formData.nome}`,
+
+        botcheck: false,
       };
 
       try {
-       
-        const response = await axios.post(ENDPOINT_DE_EMAIL, payload); 
+        const response = await axios.post(ENDPOINT_DE_EMAIL, payload);
 
-        if (response.data.success) { 
-            this.showModal('success', 'Sucesso!', 'Sua mensagem foi enviada! Responderemos em breve.');
-            this.formData = { nome: '', email: '', comoConheceu: '', message: '' };
+        if (response.data.success) {
+          this.showModal(
+            "success",
+            "Sucesso!",
+            "Sua mensagem foi enviada! Responderemos em breve."
+          );
+          this.formData = {
+            nome: "",
+            email: "",
+            comoConheceu: "",
+            message: "",
+          };
         } else {
-            
-            this.showModal('error', 'Erro no Envio', response.data.message || 'Houve uma falha interna no envio.');
+          this.showModal(
+            "error",
+            "Erro no Envio",
+            response.data.message || "Houve uma falha interna no envio."
+          );
         }
-
       } catch (error) {
         console.error("Erro de comunicação:", error);
-        this.showModal('error', 'Falha na Comunicação', 'Não foi possível conectar ao servidor de envio. Verifique sua chave.');
+        this.showModal(
+          "error",
+          "Falha na Comunicação",
+          "Não foi possível conectar ao servidor de envio. Verifique sua chave."
+        );
       } finally {
         this.isSubmitting = false;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
-
-
 .contato-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -169,7 +183,7 @@ export default {
 }
 
 .page-title {
-  background-color: #8A0808; 
+  background-color: #8a0808;
   color: white;
   padding: 5px 15px;
   display: inline-block;
@@ -181,19 +195,19 @@ export default {
 .contato-content {
   display: flex;
   justify-content: space-between;
-  gap: 80px; 
+  gap: 80px;
   margin-top: 50px;
 }
 
 .info-section {
-  flex: 1; 
-  max-width: 40%; 
+  flex: 1;
+  max-width: 40%;
 }
 
 .info-section h2 {
   font-size: 1.8em;
   margin-bottom: 5px;
-  color: #8A0808;
+  color: #8a0808;
 }
 
 .separator {
@@ -211,11 +225,11 @@ export default {
 .icon-text {
   font-size: 1.2em;
   margin-right: 5px;
-  color: #8A0808; 
+  color: #8a0808;
 }
 
 .form-section {
-  flex: 1.5; 
+  flex: 1.5;
 }
 
 .form-group {
@@ -235,18 +249,18 @@ textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
   font-size: 1em;
-  background-color: #F6E8CD; 
+  background-color: #f6e8cd;
 }
 
 textarea {
-  resize: vertical; 
+  resize: vertical;
 }
 
 .submit-button {
-  background-color: #8A0808;
+  background-color: #8a0808;
   color: white;
   padding: 10px 30px;
   border: none;
@@ -254,25 +268,25 @@ textarea {
   font-size: 1em;
   text-transform: uppercase;
   font-weight: bold;
-  
+
   display: block;
   margin-left: auto;
   margin-top: 20px;
 }
 
 @media (max-width: 768px) {
-    .contato-content {
-        flex-direction: column;
-        gap: 40px;
-    }
+  .contato-content {
+    flex-direction: column;
+    gap: 40px;
+  }
 
-    .info-section {
-        max-width: 100%; 
-    }
-    
-    .submit-button {
-        width: 100%; 
-        margin-left: 0; 
-    }
+  .info-section {
+    max-width: 100%;
+  }
+
+  .submit-button {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 </style>
