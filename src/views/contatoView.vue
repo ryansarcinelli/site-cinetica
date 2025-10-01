@@ -18,7 +18,7 @@
             <span class="icon-text">📍</span> Alegre - ES - Brasil
           </p>
           <p>
-            <span class="icon-text">📞</span> 25 99 99 999 99
+            <span class="icon-text">📞</span> (28) 99946-0521
           </p>
           <p>
             <span class="icon-text">✉️</span> comercialcineticajunior@gmail.com
@@ -34,68 +34,138 @@
           
           <div class="form-group">
             <label for="nome">Nome*</label>
-            <input type="text" id="nome" required>
+            <input type="text" id="nome" v-model="formData.nome" required>
           </div>
           
           <div class="form-group">
             <label for="email">Email*</label>
-            <input type="email" id="email" required>
+            <input type="email" id="email" v-model="formData.email" required>
           </div>
           
           <div class="form-group">
             <label for="como-conheceu">Como conheceu a Cinética?</label>
-            <input type="text" id="como-conheceu">
+            <input type="text" id="como-conheceu" v-model="formData.comoConheceu">
           </div>
           
           <div class="form-group">
             <label for="mensagem">Mensagem*</label>
-            <textarea id="mensagem" rows="6" required></textarea>
+            <textarea id="mensagem" rows="6" v-model="formData.message" required></textarea>
           </div>
 
-          <button type="submit" class="submit-button">Enviar</button>
+          <button type="submit" class="submit-button" :disabled="isSubmitting">
+            {{ isSubmitting ? 'Enviando...' : 'Enviar' }}
+          </button>
         </form>
       </section>
     </div>
-
-
   </main>
+  
+  <StatusModal 
+    :is-visible="modal.isVisible"
+    :status="modal.status"
+    :title="modal.title"
+    :message="modal.message"
+    @close="closeModal" 
+  />
 </template>
 
 <script>
-
 import AppHeader from '../components/header.vue'; 
+import StatusModal from '../components/StatusModal.vue'; 
+import axios from 'axios'; 
 
 export default {
   name: 'ContatoView',
   components: {
-    AppHeader
+    AppHeader,
+    StatusModal 
+  },
+  data() {
+    return {
+      formData: {
+        nome: '',
+        email: '',
+        comoConheceu: '',
+        message: '' // Nome do campo correto para Web3Forms
+      },
+      isSubmitting: false,
+
+      modal: {
+        isVisible: false,
+        status: 'sending', 
+        title: '',
+        message: ''
+      }
+    }
   },
   methods: {
+    showModal(status, title, message) {
+      this.modal.status = status;
+      this.modal.title = title;
+      this.modal.message = message;
+      this.modal.isVisible = true;
+    },
     
-    submitForm() {
-      alert('Formulário enviado! (A lógica de envio real deve ser implementada aqui.)');
-      // LOGICA DE ENVIO DO FORMULARIO ... FAZER ;( ...
-     
+    closeModal() {
+      this.modal.isVisible = false;
+    },
+
+    async submitForm() {
+      if (this.isSubmitting) return;
+
+      this.isSubmitting = true;
+      this.showModal('sending', 'Enviando Mensagem', 'Por favor, aguarde enquanto processamos seu formulário.');
+
+      // Chave de Acesso
+      const ACCESS_KEY = '2b7eb6f3-ec90-4b81-8df2-3d1cfefce41f'; 
+      const ENDPOINT_DE_EMAIL = 'https://api.web3forms.com/submit'; 
+      
+      const payload = {
+          ...this.formData,
+          access_key: ACCESS_KEY,
+          subject: `Nova mensagem de contato de ${this.formData.nome}`,
+          // 🛑 CORREÇÃO FINAL: Campo Honeypot adicionado
+          botcheck: false 
+      };
+
+      try {
+        // Axios sem Content-Type definido para máxima compatibilidade
+        const response = await axios.post(ENDPOINT_DE_EMAIL, payload); 
+
+        if (response.data.success) { 
+            this.showModal('success', 'Sucesso!', 'Sua mensagem foi enviada! Responderemos em breve.');
+            this.formData = { nome: '', email: '', comoConheceu: '', message: '' };
+        } else {
+            // Trata erros de validação da API
+            this.showModal('error', 'Erro no Envio', response.data.message || 'Houve uma falha interna no envio.');
+        }
+
+      } catch (error) {
+        console.error("Erro de comunicação:", error);
+        this.showModal('error', 'Falha na Comunicação', 'Não foi possível conectar ao servidor de envio. Verifique sua chave.');
+      } finally {
+        this.isSubmitting = false;
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+/* ========================================================= */
+/* ESTILOS ESPECÍFICOS DA PÁGINA DE CONTATO */
+/* ========================================================= */
 
 .contato-page {
- 
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  text-align: left; 
+  text-align: left;
 }
-
 
 .page-title-container {
   display: flex;
   align-items: center;
-  gap: 5px; 
   margin-bottom: 30px;
 }
 
@@ -109,16 +179,12 @@ export default {
   text-transform: uppercase;
 }
 
-
-
-
 .contato-content {
   display: flex;
   justify-content: space-between;
   gap: 80px; 
   margin-top: 50px;
 }
-
 
 .info-section {
   flex: 1; 
@@ -149,7 +215,6 @@ export default {
   color: #8A0808; 
 }
 
-
 .form-section {
   flex: 1.5; 
 }
@@ -174,7 +239,7 @@ textarea {
   box-sizing: border-box; 
   font-family: Arial, sans-serif;
   font-size: 1em;
-  background-color: #F6E8CD;
+  background-color: #F6E8CD; 
 }
 
 textarea {
@@ -190,14 +255,14 @@ textarea {
   font-size: 1em;
   text-transform: uppercase;
   font-weight: bold;
-  float: right; 
+  
+  display: block;
+  margin-left: auto;
+  margin-top: 20px;
 }
-
-
 
 @media (max-width: 768px) {
     .contato-content {
-        
         flex-direction: column;
         gap: 40px;
     }
@@ -207,8 +272,8 @@ textarea {
     }
     
     .submit-button {
-        float: none; 
         width: 100%; 
+        margin-left: 0; 
     }
 }
 </style>

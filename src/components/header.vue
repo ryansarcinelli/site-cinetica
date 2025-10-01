@@ -48,6 +48,7 @@ export default {
   color: #fff; 
   padding: 20px 0; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+
 }
 
 .header-content {
@@ -123,6 +124,7 @@ export default {
         flex-direction: column; 
         align-items: center;
         padding: 20px 0;
+        z-index: 1001;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
