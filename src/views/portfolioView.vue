@@ -61,8 +61,6 @@
 <script setup>
 import { ref } from "vue";
 import AppHeader from '../components/header.vue';
-import SimboloGirando from '../components/simboloGirando.vue';
-import SistemaSolar from '../components/SistemaSolar.vue';
 
 const projects = [
   {
