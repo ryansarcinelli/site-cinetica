@@ -71,7 +71,7 @@
 
 <script>
 import AppHeader from "../components/header.vue";
-import StatusModal from "../components/StatusModal.vue";
+import StatusModal from "../../components/StatusModal.vue";
 import axios from "axios";
 
 export default {
