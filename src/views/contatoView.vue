@@ -72,6 +72,7 @@
 <script>
 import AppHeader from "../components/header.vue";
 import axios from "axios";
+import StatusModal from "../components/StatusModal.vue";
 
 export default {
   name: "ContatoView",
@@ -119,12 +120,12 @@ export default {
         "Por favor, aguarde enquanto processamos seu formulário."
       );
 
-      const ACCESS_KEY = "2b7eb6f3-ec90-4b81-8df2-3d1cfefce41f";
-      const ENDPOINT_DE_EMAIL = "https://api.web3forms.com/submit";
+      const EMAIL_ACCESS_KEY = import.meta.env.VITE_EMAIL_ACCESS_KEY;
+      const ENDPOINT_DE_EMAIL = import.meta.env.VITE_ENDPOINT_DE_EMAIL;
 
       const payload = {
         ...this.formData,
-        access_key: ACCESS_KEY,
+        email_access_key: EMAIL_ACCESS_KEY,
         subject: `Nova mensagem de contato de ${this.formData.nome}`,
 
         botcheck: false,
