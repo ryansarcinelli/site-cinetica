@@ -86,7 +86,7 @@ export default {
         nome: '',
         email: '',
         comoConheceu: '',
-        message: '' // Nome do campo correto para Web3Forms
+        message: '' 
       },
       isSubmitting: false,
 
@@ -116,7 +116,7 @@ export default {
       this.isSubmitting = true;
       this.showModal('sending', 'Enviando Mensagem', 'Por favor, aguarde enquanto processamos seu formulário.');
 
-      // Chave de Acesso
+      
       const ACCESS_KEY = '2b7eb6f3-ec90-4b81-8df2-3d1cfefce41f'; 
       const ENDPOINT_DE_EMAIL = 'https://api.web3forms.com/submit'; 
       
@@ -124,19 +124,19 @@ export default {
           ...this.formData,
           access_key: ACCESS_KEY,
           subject: `Nova mensagem de contato de ${this.formData.nome}`,
-          // 🛑 CORREÇÃO FINAL: Campo Honeypot adicionado
+          
           botcheck: false 
       };
 
       try {
-        // Axios sem Content-Type definido para máxima compatibilidade
+       
         const response = await axios.post(ENDPOINT_DE_EMAIL, payload); 
 
         if (response.data.success) { 
             this.showModal('success', 'Sucesso!', 'Sua mensagem foi enviada! Responderemos em breve.');
             this.formData = { nome: '', email: '', comoConheceu: '', message: '' };
         } else {
-            // Trata erros de validação da API
+            
             this.showModal('error', 'Erro no Envio', response.data.message || 'Houve uma falha interna no envio.');
         }
 
@@ -152,9 +152,7 @@ export default {
 </script>
 
 <style scoped>
-/* ========================================================= */
-/* ESTILOS ESPECÍFICOS DA PÁGINA DE CONTATO */
-/* ========================================================= */
+
 
 .contato-page {
   max-width: 1200px;
