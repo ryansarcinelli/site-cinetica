@@ -48,6 +48,10 @@ export default {
   color: #fff; 
   padding: 20px 0; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  width: 100vw;
+  margin-left: calc(50% - 50vw); 
+  position: relative; 
+  left: 0;
 
 }
 
@@ -89,7 +93,6 @@ export default {
     display: none; 
 }
 
-/* MEDIA QUERY (CELULAR/TABLET) */
 
 @media (max-width: 768px) {
     
