@@ -1,9 +1,10 @@
 <template>
   <AppHeader /> 
+  <HeroSection />
   
   <main>
 
-    <HeroSection />
+    
 
 
    
