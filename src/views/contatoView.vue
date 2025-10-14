@@ -1,5 +1,5 @@
 <template>
-  <AppHeader /> 
+  
   
   <main class="contato-page">
     

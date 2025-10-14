@@ -16,13 +16,13 @@
       <nav 
         class="navigation" 
         :class="{ 'is-active': isMenuOpen }"
-        @click="isMenuOpen = false"
+        @click="closeMenu"
       >
-        <router-link to="/feedback">Feedback</router-link>
-        <router-link to="/sobre">Sobre nós</router-link>
+        <a href="#" @click.prevent="scrollTo('quem-somos')">Sobre nós</a>
         <router-link to="/servicos">Serviços</router-link>
+        <router-link to="/feedback">Feedback</router-link>
         <router-link to="/contato">Fale conosco</router-link>
-        <router-link to="/portfolio">Portfólio </router-link>
+        <router-link to="/portfolio">Portfólio</router-link>
       </nav>
     </div>
   </header>
@@ -31,12 +31,30 @@
 <script>
 export default {
   name: 'AppHeader',
-  
   data() {
     return {
-     
       isMenuOpen: false 
     };
+  },
+  methods: {
+   
+    closeMenu() {
+      this.isMenuOpen = false;
+    },
+    
+    scrollTo(sectionId) {
+      
+      if (this.$route.path === '/') {
+       
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        
+        this.$router.push(`/#${sectionId}`);
+      }
+    }
   }
 }
 </script>
@@ -50,9 +68,13 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   width: 100vw;
   margin-left: calc(50% - 50vw); 
-  position: relative; 
+ 
   left: 0;
-
+ 
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .header-content {
@@ -76,13 +98,19 @@ export default {
   display: block; 
 }
 
+.navigation {
+  display: flex;
+  align-items: center;
+}
 
-.navigation a {
+
+.navigation a, .navigation .router-link-active {
   color: #fff;
   text-decoration: none;
   margin-left: 5px; 
   padding: 5px 30px; 
   transition: color 0.3s ease; 
+  cursor: pointer;
 }
 .navigation a:hover {
   color: #ffffffbe; 
@@ -96,13 +124,13 @@ export default {
 
 @media (max-width: 768px) {
     
-   
+    
     .header-content {
         justify-content: space-between; 
         flex-direction: row; 
     }
 
-   
+    
     .menu-toggle {
         display: block; 
         background: none;
@@ -113,12 +141,12 @@ export default {
         z-index: 1000;
     }
 
-  
+ 
     .navigation {
         display: none; 
         
         
-        position: absolute; 
+        position: fixed; 
         top: 100px; 
         left: 0;
         width: 100%;

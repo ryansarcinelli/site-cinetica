@@ -1,5 +1,5 @@
 <template>
-    <AppHeader/>
+    
   <section id="projects" class="portfolio-page">
     <div class="page-title-container">
       <h2 class="page-title">Portfólio</h2>
@@ -60,7 +60,7 @@
 
 <script setup>
 import { ref } from "vue";
-import AppHeader from '../components/header.vue';
+
 
 const projects = [
   {

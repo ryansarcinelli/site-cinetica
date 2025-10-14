@@ -1,8 +1,13 @@
 <template>
   <div>
-    <!-- Seção Hero -->
     <section class="hero-section">
       <div class="hero-content">
+        <div class="circles-container">
+          <div class="circle circle-1"></div>
+          <div class="circle circle-2"></div>
+          <div class="circle circle-3"></div>
+        </div>
+        
         <h1 class="hero-title">
           <span class="highlight-bg">
             <span class="text">Cinética Junior</span>
@@ -12,20 +17,17 @@
       </div>
     </section>
 
-    <!-- Seção do Carrossel -->
     <section class="carousel-section" ref="carouselSection">
       <div class="carousel">
         <div class="carousel-track" :style="trackStyle">
           <img v-for="(img, i) in images" :key="i" :src="img" />
         </div>
 
-        <!-- Controles do Carrossel -->
         <div class="carousel-controls">
           <button @click="prevSlide" class="carousel-btn">‹</button>
           <button @click="nextSlide" class="carousel-btn">›</button>
         </div>
 
-        <!-- Indicadores do Carrossel -->
         <div class="carousel-indicators">
           <span
             v-for="(img, i) in images"
@@ -154,10 +156,20 @@ export default {
 
 <style scoped>
 
+@keyframes rotate-right {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-left {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,20 +181,45 @@ export default {
 }
 
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
 
 .hero-content {
   text-align: center;
   position: relative;
-  z-index: 2;
+  
+}
+
+
+.circles-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2rem;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box; 
+}
+
+.circle-1 {
+  border: 2px solid white;
+  animation: rotate-right 5s linear infinite;
+}
+
+.circle-2 {
+  border: 8px solid white;
+  animation: rotate-left 5s linear infinite;
+}
+
+.circle-3 {
+  background-color: white;
+  animation: rotate-right 5s linear infinite;
 }
 
 .hero-title {
+  
   font-size: 6rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -195,6 +232,7 @@ body {
 }
 
 .text {
+  
   display: inline-block;
   transition: transform 0.3s ease, opacity 0.3s ease;
   color: var(--header-color, #F6E8CD); 
@@ -275,7 +313,7 @@ body {
   transform: scale(1.1);
 }
 
-/* Indicadores */
+
 .carousel-indicators {
   position: absolute;
   bottom: 20px;
@@ -323,9 +361,15 @@ body {
   .hero-subtitle {
     font-size: 1.2rem;
   }
+  
+  .circle {
+    width: 45px;
+    height: 45px;
+  }
 
   .carousel-section {
     min-height: 250px; 
   }
 }
 </style>
+

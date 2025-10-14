@@ -1,5 +1,5 @@
 <template>
-  <AppHeader />
+  
   <section id="feedbacks" class="feedback-page">
     <div class="page-title-container">
       <h2 class="page-title">Feedbacks</h2>
@@ -36,7 +36,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import AppHeader from '../components/header.vue'; // Verifique se o caminho está correto
+
 
 // Dados mocados para os feedbacks
 const feedbacks = ref([

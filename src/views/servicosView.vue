@@ -1,5 +1,5 @@
 <template>
-  <AppHeader /> 
+ 
   
   <main class="servicos-page">
     
@@ -85,12 +85,12 @@
 </template>
 
 <script>
-import AppHeader from '../components/header.vue'; 
+
 
 export default {
   name: 'ServicosView',
   components: {
-    AppHeader
+    
   }
 }
 </script>
