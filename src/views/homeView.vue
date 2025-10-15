@@ -1,26 +1,25 @@
 <template>
-  <AppHeader /> 
   
-  <main>
-
-    <HeroSection />
-
-
-   
-    </main>
+  <HeroSection />
+  <ContentView />
+  <AppFooter />
 </template>
 
 <script>
 
-import AppHeader from '../components/header.vue';
+
 import HeroSection from '../components/HomePage/HeroSection.vue';
+import ContentView from '../components/HomePage/content.vue';
+import AppFooter from '../components/footer.vue';
 
 export default {
   name: 'App',
  
   components: {
-    AppHeader,
-    HeroSection
+    
+    HeroSection,
+    ContentView,
+    AppFooter
   }
 }
 </script>
@@ -34,7 +33,8 @@ body {
 }
 
 main {
-    padding: 20px;
+    
     text-align: center;
 }
 </style>
+

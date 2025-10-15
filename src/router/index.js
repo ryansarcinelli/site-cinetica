@@ -13,21 +13,21 @@ const routes = [
     component: () => import("../views/contatoView.vue"),
   },
 
-  //{
-  //  path: '/feedback',
-  //  name: 'feedback',
-  //  component: () => import('../views/FeedbackView.vue')
-  // },
+  {
+    path: '/feedback',
+    name: 'feedback',
+    component: () => import('../views/feedbackView.vue'),
+  },
   // {
   //  path: '/sobre',
   // name: 'sobre',
   // component: () => import('../views/SobreView.vue')
   //},
-  // {
-  // path: '/servicos',
-  //name: 'servicos',
-  //component: () => import('../views/ServicosView.vue')
-  //},
+  {
+    path: '/servicos',
+    name: 'servicos',
+  component: () => import('../views/servicosView.vue')
+  },
   {
     path: "/portfolio",
     name: "portfolio",

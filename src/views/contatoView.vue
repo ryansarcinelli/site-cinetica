@@ -1,5 +1,5 @@
 <template>
-  <AppHeader /> 
+  
   
   <main class="contato-page">
     
@@ -70,14 +70,14 @@
 </template>
 
 <script>
-import AppHeader from '../components/header.vue'; 
-import StatusModal from '../components/StatusModal.vue'; 
+
+import StatusModal from '../components/statusModal.vue'; 
 import axios from 'axios'; 
 
 export default {
   name: 'ContatoView',
   components: {
-    AppHeader,
+    
     StatusModal 
   },
   data() {
