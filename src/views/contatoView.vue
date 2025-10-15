@@ -60,7 +60,7 @@
     </div>
   </main>
   
-  <StatusModal 
+  <StatusModal
     :is-visible="modal.isVisible"
     :status="modal.status"
     :title="modal.title"
@@ -71,7 +71,7 @@
 
 <script>
 import AppHeader from '../components/header.vue'; 
-import StatusModal from '../components/StatusModal.vue'; 
+import StatusModal from '@/components/StatusModal.vue'; 
 import axios from 'axios'; 
 
 export default {
