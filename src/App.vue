@@ -19,18 +19,17 @@ export default {
 </script>
 
 <style>
-/* Estilos globais para a aplicação */
+
 html, body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  /* Permitimos a rolagem normal no body novamente */
+ 
   overflow: auto; 
 }
 
-/* Esta é a regra principal para as páginas de conteúdo */
 .main-content {
-  /* Isso conserta TODAS as páginas (Portfolio, Feedback, etc.) */
-  padding-top: 100px; /* Use a altura exata do seu header */
+  
+  padding-top: 100px; 
 }
 </style>

@@ -67,10 +67,7 @@ export default {
   padding: 20px 0; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   width: 100vw;
-  margin-left: calc(50% - 50vw); 
- 
   left: 0;
- 
   position: fixed;
   top: 0;
   width: 100%;
@@ -78,7 +75,7 @@ export default {
 }
 
 .header-content {
-  max-width: 1800px; 
+  max-width: 1900px; 
   margin: 0 auto; 
   padding: 0 10px; 
   display: flex; 

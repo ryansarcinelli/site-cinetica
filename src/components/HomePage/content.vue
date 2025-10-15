@@ -36,6 +36,7 @@
       <div class="cta-image-wrapper">
         <div class="polaroid-frame">
             <div class="image-container">
+                <img src="../../assets/img/castelinho3.jpg" alt="Castelinho" class="polaroid-image" />
                 <img src="../../assets/img/cici.png" alt="mascote" class="polaroid-image" />
             </div>
         </div>
@@ -44,8 +45,8 @@
         <h2 class="cta-title">vem ser cinético!</h2>
         <p class="cta-subtitle">Serviços de qualidade abaixo do preço do mercado feito por estudantes da Universidade Federal do Espírito Santo</p>
         <div class="cta-buttons">
-          <a href="/portfolio" class="cta-btn">ver produtos</a>
-          <a href="/contato" class="cta-btn">fale conosco</a>
+          <a href="/portfolio" class="cta-btn">Ver produtos</a>
+          <a href="/contato" class="cta-btn"> Fale conosco</a>
         </div>
       </div>
     </div>
@@ -213,29 +214,57 @@ export default {
   overflow: hidden; 
 }
 
-.polaroid-image {
-  display: block; 
-  width: 250px;
-  height: 250px;
-  object-fit: contain; 
-  transition: transform 0.4s ease; 
-}
 
 .image-container {
-  background: white;
+  position: relative;
+  background: #d9d9d9;
   width: 250px;
   height: 250px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden; 
 }
 
 
-.polaroid-frame:hover .polaroid-image {
-  transform: scale(1.1); 
+.polaroid-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
 }
 
+
+.polaroid-image[alt="Castelinho"] {
+  z-index: 1; 
+  object-fit: cover; 
+  transform: rotate(2deg) scale(1.05); 
+}
+
+
+.polaroid-image[alt="mascote"] {
+  z-index: 10; 
+  
+  width: 70%;  
+  height: 70%; 
+  object-fit: contain;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  
+  transform: rotate(-5deg); 
+}
+
+
+.polaroid-frame:hover .polaroid-image[alt="Castelinho"] {
+  transform: rotate(0deg) scale(1.1);
+}
+
+.polaroid-frame:hover .polaroid-image[alt="mascote"] {
+  transform: rotate(0deg) scale(1.1);
+}
 .cta-text-content {
   max-width: 500px;
   text-align: left;
@@ -272,8 +301,9 @@ export default {
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.9em;
-  text-transform: lowercase;
+  font-weight: 600;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
 .cta-btn:hover {
