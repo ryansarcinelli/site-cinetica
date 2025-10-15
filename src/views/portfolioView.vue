@@ -1,5 +1,4 @@
 <template>
-    
   <section id="projects" class="portfolio-page">
     <div class="page-title-container">
       <h2 class="page-title">Portfólio</h2>
@@ -53,14 +52,11 @@
         </div>
       </div>
     </div>
-
-    
   </section>
 </template>
 
 <script setup>
 import { ref } from "vue";
-
 
 const projects = [
   {
@@ -111,54 +107,52 @@ const projects = [
 </script>
 
 <style scoped>
-/* Estilos globais do portfolio */
 .portfolio-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   text-align: left;
-  background-color: #f6e8cd; /* Cor de fundo adaptada do contato-page */
+  background-color: #f6e8cd;
 }
 
-/* Estilos do título da página */
 .page-title-container {
   display: flex;
   align-items: center;
   gap: 5px;
   margin-bottom: 30px;
-  border-bottom: 1px solid #ccc; /* Linha divisória adaptada */
+  border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
 }
 
 .page-title {
-  color: #8a0808;
+  background-color: #8A0808; 
+  color: #f6e8cd;
   padding: 5px 15px;
   display: inline-block;
   font-size: 2.2em;
   font-weight: bold;
   text-transform: uppercase;
+  margin: 0;
 }
 
-/* Estilos da grade de projetos */
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px; /* Espaçamento entre os cards */
+  gap: 30px;
   justify-content: center;
   margin-top: 50px;
 }
 
-/* Estilos de cada card de projeto */
 .project-card {
-  background-color: #fff; /* Fundo branco para os cards */
+  background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
-  width: 100%; /* Default para mobile */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
   transition: transform 0.3s ease-in-out;
-  flex: 1 1 300px; /* Flexbox para layout responsivo */
-  max-width: calc(33.333% - 20px); /* 3 itens por linha com gap */
-  box-sizing: border-box; /* Garante que padding e border estão dentro do width */
+  flex: 1 1 300px;
+  max-width: calc(33.333% - 20px);
+  box-sizing: border-box;
 }
 
 .project-card:hover {
@@ -166,7 +160,7 @@ const projects = [
 }
 
 .project-image-container {
-  height: 200px; /* Altura fixa para a imagem */
+  height: 200px;
   overflow: hidden;
 }
 
@@ -193,7 +187,7 @@ const projects = [
 }
 
 .project-tag {
-  background-color: rgba(138, 8, 8, 0.1); /* Cor de tag adaptada */
+  background-color: rgba(138, 8, 8, 0.1);
   color: #8a0808;
   padding: 5px 10px;
   border-radius: 20px;
@@ -217,9 +211,9 @@ const projects = [
 
 .project-links {
   display: flex;
-  justify-content: flex-end; /* Alinha links à direita */
+  justify-content: flex-end;
   gap: 15px;
-  font-size: 1.2em; /* Tamanho dos ícones */
+  font-size: 1.2em;
 }
 
 .project-link {
@@ -231,7 +225,6 @@ const projects = [
   color: #333;
 }
 
-/* Botão "Veja meu Github" */
 .github-button-container {
   text-align: center;
   margin-top: 50px;
@@ -258,10 +251,9 @@ const projects = [
   background-color: #5f0606;
 }
 
-/* Media Queries para responsividade */
 @media (max-width: 1024px) {
   .project-card {
-    max-width: calc(50% - 20px); /* 2 itens por linha */
+    max-width: calc(50% - 20px);
   }
 }
 
@@ -270,7 +262,7 @@ const projects = [
     gap: 20px;
   }
   .project-card {
-    max-width: 100%; /* 1 item por linha */
+    max-width: 100%;
   }
 
   .page-title {
