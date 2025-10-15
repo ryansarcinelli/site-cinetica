@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import StatusModal from '../components/modalStatus.vue';
+import StatusModal from '../components/StatusModal.vue';
 import axios from 'axios'; 
 
 export default {
