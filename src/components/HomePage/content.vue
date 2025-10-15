@@ -45,8 +45,8 @@
         <h2 class="cta-title">vem ser cinético!</h2>
         <p class="cta-subtitle">Serviços de qualidade abaixo do preço do mercado feito por estudantes da Universidade Federal do Espírito Santo</p>
         <div class="cta-buttons">
-          <a href="/portfolio" class="cta-btn">Ver produtos</a>
-          <a href="/contato" class="cta-btn"> Fale conosco</a>
+        <router-link to="/portfolio" class="cta-btn">Ver produtos</router-link>
+        <router-link to="/contato" class="cta-btn">Fale conosco</router-link>
         </div>
       </div>
     </div>
